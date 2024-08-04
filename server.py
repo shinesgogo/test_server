@@ -17,7 +17,6 @@ app.add_middleware(
 )
 
 images_dir = "./images/"
-video_dir = "./videos/"
 output_dir = "./animations"
 
 @app.post("/uploadImage/")
@@ -30,8 +29,6 @@ async def upload_image(image: UploadFile = File(...), number: int = Form(...)):
     with open(image_path, "wb") as buffer:
         buffer.write(await image.read())
 
-    # Define the video path
-    video_name = f"test{number}"    
     
     return_video = os.path.join(output_dir, f"test1.mp4")
     return FileResponse(return_video, media_type="video/mp4")
